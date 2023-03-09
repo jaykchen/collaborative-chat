@@ -28,7 +28,7 @@ pub fn run() {
         if let Some(c) = c {
             if c.new_conversation {
                 send_message_to_channel(
-                    &OPENPI_KEY_NAME,
+                    &TEAM_NAME,
                     &CHANNEL_NAME,
                     "Let's start a new conversation!".to_string(),
                 );
