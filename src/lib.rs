@@ -10,21 +10,21 @@ pub fn run() {
         Ok(name) => name,
     };
 
-    let CHANNEL_NAME: String = match env::var("TEAM_NAME") {
+    let CHANNEL_NAME: String = match env::var("CHANNEL_NAME") {
         Err(_) => "general".to_string(),
         Ok(name) => name,
     };
-    let OPENPI_KEY_NAME: String = match env::var("TEAM_NAME") {
+    let OPENPI_KEY_NAME: String = match env::var("OPENPI_KEY_NAME") {
         Err(_) => "jaykchen".to_string(),
         Ok(name) => name,
     };
     listen_to_channel(&TEAM_NAME, &CHANNEL_NAME, |sm| {
-        let CHAT_ID: String = match env::var("TEAM_NAME") {
-            Err(_) => "jaykchen".to_string(),
+        let CHAT_ID: String = match env::var("CHAT_ID") {
+            Err(_) => "secondstate-collaborative_chat".to_string(),
             Ok(name) => name,
         };
 
-        let c = chat_completion("Agent", &CHAT_ID, &sm.text);
+        let c = chat_completion(&OPENPI_KEY_NAME, &CHAT_ID, &sm.text);
         if let Some(c) = c {
             if c.new_conversation {
                 send_message_to_channel(
